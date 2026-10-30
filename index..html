@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ради того, чтобы завтра взошло солнце… — История семьи Дубонос</title>
+<style>
+/* ===== ПАЛИТРА ===== */
+:root {
+  --dark-green: #1a3a2a;
+  --olive: #5c6b3a;
+  --almond: #f4ede0;
+  --mint: #a8d5ba;
+  --mint-light: #d4ead9;
+  --text-dark: #1c2b22;
+  --text-light: #f4ede0;
+  --shadow: rgba(26, 58, 42, 0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: var(--almond);
+  color: var(--text-dark);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ===== ФОРМАТИРОВАНИЕ ТЕКСТА ===== */
+p {
+  text-align: justify;
+  text-indent: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+/* ===== НАВИГАЦИЯ ===== */
+.timeline-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(26, 58, 42, 0.96);
+  backdrop-filter: blur(8px);
+  padding: 0.6rem 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+.timeline-nav a {
+  color: var(--almond);
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+  white-space: nowrap;
+}
+.timeline-nav a:hover, .timeline-nav a.active {
+  background: var(--mint);
+  color: var(--dark-green);
+}
+
+/* ===== КНОПКА ВВЕРХ ===== */
+.scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 45px;
+  height: 45px;
+  background: var(--olive);
+  color: var(--almond);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+  z-index: 999;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.scroll-top:hover {
+  background: var(--dark-green);
+  transform: translateY(-3px);
+}
+
+/* ===== ГЛАВНАЯ ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10rem 2rem 6rem; /* Опустили текст ниже */
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 80%, rgba(255, 200, 100, 0.25) 0%, transparent 50%),
+    linear-gradient(180deg, #0d1f16 0%, #1a3a2a 40%, #2d4a35 70%, #3a4a2a 100%);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+/* АНИМАЦИЯ СОЛНЦА (ОДИН РАЗ) */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 15%; left: 50%;
+  transform: translateX(-50%);
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(255, 230, 150, 1) 0%, rgba(255, 180, 80, 0.6) 30%, rgba(255, 140, 50, 0.2) 60%, transparent 80%);
+  border-radius: 50%;
+  filter: blur(10px);
+  animation: sunPulse 3s ease-out forwards;
+  z-index: 0;
+}
+@keyframes sunPulse {
+  0% { 
+    transform: translateX(-50%) scale(1); 
+    opacity: 0.8;
+    box-shadow: 0 0 50px 20px rgba(255, 200, 100, 0.3);
+  }
+  100% { 
+    transform: translateX(-50%) scale(1.15); 
+    opacity: 1;
+    box-shadow: 0 0 100px 40px rgba(255, 200, 100, 0.5);
+  }
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 900px; margin-top: 4rem; /* Дополнительный сдвиг вниз */ }
+.hero h1 {
+  font-size: clamp(1.6rem, 4.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 3px 20px rgba(0,0,0,0.7);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  text-align: center;
+}
+.hero h2 {
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  font-weight: 400;
+  color: var(--mint);
+  font-style: italic;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  text-align: center;
+  text-indent: 0;
+}
+
+/* ===== ВАША КАРТИНКА С ДЕРЕВЬЯМИ ===== */
+.hero-forest {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%; 
+  z-index: 1;
+  
+  background-image: url('images/forest.png'); 
+  background-size: 100% auto; 
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  
+  mix-blend-mode: multiply;
+  
+  -webkit-mask-image: linear-gradient(to top, black 75%, transparent 100%);
+  mask-image: linear-gradient(to top, black 75%, transparent 100%);
+}
+
+/* ===== СЕКЦИИ ===== */
+.section {
+  padding: 2.5rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+.section:nth-child(even) { background: var(--almond); }
+.section:nth-child(odd) { background: #ede4d3; }
+
+/* Полноэкранные секции */
+.full-width-section {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 2.5rem 1.5rem;
+}
+.full-width-section > div {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: var(--dark-green);
+  margin-bottom: 0.3rem;
+  border-left: 6px solid var(--olive);
+  padding-left: 1rem;
+}
+.section-subtitle {
+  color: var(--olive);
+  font-style: italic;
+  margin-bottom: 1.2rem;
+  padding-left: 1.4rem;
+  font-size: 1rem;
+}
+
+/* ===== КАРТОЧКИ ===== */
+.card {
+  background: var(--almond);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 15px var(--shadow);
+  border-top: 4px solid var(--olive);
+}
+.card h3 {
+  color: var(--dark-green);
+  margin-bottom: 0.6rem;
+  font-size: 1.2rem;
+}
+.card p { margin-bottom: 0.6rem; }
+.card p:last-child { margin-bottom: 0; }
+
+/* Цитата (сбрасываем отступ, чтобы было красиво) */
+.quote {
+  background: linear-gradient(135deg, var(--mint-light), #e8f0e0);
+  border-left: 5px solid var(--olive);
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--dark-green);
+  border-radius: 0 8px 8px 0;
+  position: relative;
+}
+.quote p {
+  text-indent: 0; 
+  text-align: justify;
+}
+.quote::before {
+  content: '«';
+  font-size: 3rem;
+  color: var(--olive);
+  position: absolute;
+  top: -0.2rem; left: 0.5rem;
+  opacity: 0.4;
+}
+.quote-author {
+  display: block;
+  margin-top: 0.8rem;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: var(--olive);
+  text-align: right;
+}
+
+/* ===== ФОТО ===== */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  align-items: stretch;
+}
+.photo-grid.single-photo {
+  grid-template-columns: 1fr;
+  max-width: 800px;
+  margin: 1.5rem auto;
+}
+.photo-grid.single-photo-left {
+  grid-template-columns: 1fr;
+  max-width: 600px;
+  margin: 1.5rem 0;
+}
+
+/* Сетка для двух одинаковых портретов */
+.photo-grid.equal-two {
+  grid-template-columns: 1fr 1fr;
+  max-width: 800px;
+  margin: 1.5rem auto;
+}
+
+/* Сетка для документов (в столбик, без отступов) */
+.photo-grid.doc-stack {
+  grid-template-columns: 1fr;
+  max-width: 600px;
+  margin: 1.5rem auto 0.5rem; /* Уменьшили отступ снизу */
+  gap: 0; 
+}
+
+.photo-card {
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+  transition: transform 0.3s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.photo-card:hover { transform: translateY(-3px); }
+
+/* Базовое фото */
+.photo-card img {
+  width: 100%;
+  height: 350px; 
+  object-fit: cover; 
+  display: block;
+  background: transparent;
+  padding: 0;
+}
+
+/* Класс для фото, которое должно быть видно целиком (высота авто) */
+.photo-card img.photo-auto { height: auto; max-height: 600px; object-fit: contain; }
+.photo-card img.photo-large { height: 550px; } 
+.photo-card img.photo-small { height: 250px; } 
+.photo-card img.photo-wide  { height: 250px; object-fit: contain; } 
+.photo-card img.photo-vertical { height: 500px; object-fit: contain; }
+
+/* Класс для квадратных фото (все одинаковые) */
+.photo-card img.photo-square {
+  height: 450px; 
+  object-fit: cover; 
+  object-position: center top; 
+}
+
+/* Класс для памятника (чтобы не обрезался) */
+.photo-card img.photo-monument {
+  height: 450px;
+  object-fit: cover;
+  object-position: 60% center; /* Сдвигаем фокус вправо */
+}
+
+/* Класс для медалей и удостоверений: чтобы были видны целиком */
+.photo-card img.photo-contain {
+  height: 450px; 
+  object-fit: contain; 
+  background-color: var(--mint-light); 
+  padding: 10px;
+}
+
+/* Класс для документов: авто-высота, без фона и рамок */
+.photo-card img.doc-img {
+  height: auto;
+  max-height: 550px; 
+  object-fit: contain;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.photo-card .caption {
+  padding: 0.8rem 0.5rem;
+  font-size: 0.95rem;
+  color: var(--dark-green);
+  background: transparent;
+  border-top: none;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-style: italic;
+  text-indent: 0; 
+}
+.photo-card .no-photo {
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--olive);
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 2rem;
+  flex-grow: 1;
+  font-style: italic;
+}
+
+/* Скрываем пустую подпись */
+.photo-card .caption:empty {
+  display: none;
+}
+
+/* ===== МОДАЛЬНОЕ ОКНО ===== */
+dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  max-width: 98vw;
+  max-height: 98vh;
+  background: var(--almond);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+dialog::backdrop {
+  background: rgba(13, 31, 22, 0.95);
+}
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 98vh;
+}
+.dialog-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background: #000;
+  overflow: auto;
+  flex-grow: 1;
+}
+.dialog-img-wrapper img {
+  max-width: 100%;
+  max-height: 88vh;
+  object-fit: contain;
+  display: block;
+}
+.dialog-caption {
+  padding: 1rem 2rem;
+  text-align: center;
+  color: var(--dark-green);
+  font-style: italic;
+  font-size: 1rem;
+  background: var(--almond);
+  border-top: 2px solid var(--mint);
+  text-indent: 0;
+}
+.dialog-close {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: var(--olive);
+  color: var(--almond);
+  border: none;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+/* ===== БЛОК АВТОРСТВА ===== */
+.authorship {
+  background: var(--dark-green);
+  color: var(--almond);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.authorship p { 
+  margin-bottom: 0.4rem; 
+  text-indent: 0;
+  text-align: center;
+}
+.authorship strong { color: var(--mint); }
+
+/* ===== ПОДВАЛ ===== */
+footer {
+  background: var(--dark-green);
+  color: var(--almond);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(168, 213, 186, 0.2);
+}
+footer p {
+  text-indent: 0;
+  text-align: center;
+  margin-bottom: 0;
+}
+footer a { color: var(--mint); }
+
+/* ===== ВИДЕО ПЛЕЕР ===== */
+.video-wrapper {
+  max-width: 800px;
+  margin: 1rem auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 15px var(--shadow);
+  background: #000;
+}
+.video-wrapper video {
+  width: 100%;
+  display: block;
+}
+.video-caption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--olive);
+  font-style: italic;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  text-indent: 0;
+}
+
+/* ===== КАРТА ===== */
+.map-wrapper {
+  max-width: 100%;
+  margin: 1rem auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 15px var(--shadow);
+}
+.map-wrapper iframe {
+  width: 100%;
+  height: 500px;
+  border: none;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+  .timeline-nav { gap: 0.2rem; padding: 0.4rem; }
+  .timeline-nav a { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
+  .section { padding: 1.5rem 1rem; }
+  .hero { padding: 8rem 1rem 3rem; } /* Опускаем текст и на телефонах */
+  .hero::after { width: 120px; height: 120px; }
+  .hero-forest { height: 45%; } 
+  .scroll-top { bottom: 1rem; right: 1rem; width: 40px; height: 40px; }
+  .full-width-section { padding: 1.5rem 1rem; }
+  .map-wrapper iframe { height: 300px; }
+  
+  .photo-card img { height: 250px; }
+  .photo-card img.photo-auto { max-height: 400px; }
+  .photo-card img.photo-large { height: 350px; }
+  .photo-card img.photo-small { height: 200px; }
+  .photo-card img.photo-wide  { height: 200px; }
+  .photo-card img.photo-vertical { height: 350px; }
+  .photo-card img.photo-square { height: 300px; }
+  .photo-card img.photo-monument { height: 300px; }
+  .photo-card img.photo-contain { height: 300px; }
+  .photo-card img.doc-img { max-height: 400px; }
+  .photo-card .no-photo { height: 250px; }
+
+  .photo-grid.single-photo { max-width: 100%; }
+  .photo-grid.single-photo-left { max-width: 100%; }
+  .photo-grid.equal-two { grid-template-columns: 1fr; }
+  .photo-grid.doc-stack { max-width: 100%; }
+  dialog { max-width: 98vw; }
+  .dialog-img-wrapper img { max-height: 80vh; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== НАВИГАЦИЯ ===== -->
+<nav class="timeline-nav" id="nav">
+  <a href="#section1">Начало войны</a>
+  <a href="#section3">Связная отряда</a>
+  <a href="#section4">В рядах партизан</a>
+  <a href="#section5">Рельсовая война</a>
+  <a href="#section6">Операция «Герман»</a>
+  <a href="#section7">Мирная жизнь</a>
+  <a href="#section8">Память</a>
+</nav>
+
+<!-- ===== ГЛАВНАЯ ===== -->
+<header class="hero" id="hero">
+  <div class="hero-content">
+    <h1>Ради того, чтобы завтра взошло солнце…</h1>
+    <h2>Великая Отечественная война в судьбах Христины Яковлевны<br>и Веры Ивановны Дубонос — партизанок бригады имени В.П. Чкалова</h2>
+  </div>
+  <!-- Блок с вашей картинкой деревьев -->
+  <div class="hero-forest"></div>
+</header>
+
+<!-- ===== РАЗДЕЛ 1: НАЧАЛО ВОЙНЫ ===== -->
+<section class="section" id="section1">
+  <h2 class="section-title">Начало войны</h2>
+  <p class="section-subtitle">1941 год. Прончейково и его окрестности</p>
+
+  <div class="card">
+    <h3>История, которая рядом</h3>
+    <p>Там, где сегодня стоит наша школа и где мы живем, когда-то разворачивались события, навсегда изменившие судьбы людей. В годы Великой Отечественной войны в деревне Прончейково, которая находится рядом с Селевцами, жила семья Дубонос. Их личная история стала маленьким, но очень важным звеном большой военной летописи.</p>
+    <p>Глава семьи — Иван Григорьевич Дубонос — был одним из организаторов партизанского отряда имени И.П. Кузнецова. Его жена Христина Яковлевна и дочь Вера стали партизанками бригады имени В.П. Чкалова.</p>
+    <p>Подробности этой истории мы узнали от Ады Антоновны Кобан — дочери Веры Ивановны и внучки Ивана Григорьевича и Христины Яковлевны. К сожалению, не все, кто прошел через тяжелые испытания войны, могли говорить о пережитом. Тяжелые воспоминания заставляли многих ветеранов хранить молчание, не рассказывая о тех временах даже самым близким.</p>
+    <p>Именно поэтому рассказы Ады Антоновны, которая бережно сохранила и передала нам воспоминания своей мамы и бабушки, имеют особую ценность. Это не просто сухие строки из архивов, а живая история, услышанная от очевидцев и сохраненная для нас благодаря связи поколений.</p>
+    
+    <div class="photo-grid single-photo">
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="photo-auto" src="images/family_young.jpg" alt="Семья Дубонос с соседями" onerror="showNoPhoto(this)">
+        <div class="caption">Семья Дубонос с соседями. В центре — маленькая Вера</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>22 июня 1941 года</h3>
+    <p>Несмотря на длительные слухи о предстоящей войне, нападение фашистов оказалось неожиданным.</p>
+    <div class="quote">
+      <p>«Мама рассказывала, что 22 июня 1941 года они всей семьей собирались в гости, а в небе летали самолеты, стоял гул. Бабушка не могла понять, почему их так много, а дед сразу сказал, что это война».</p>
+      <span class="quote-author">— Ада Антоновна Кобан, дочь Веры Ивановны и внучка Ивана Григорьевича и Христины Яковлевны</span>
+    </div>
+    <p>Хорошо подготовленная и технически оснащенная армия наступала так быстро, что на четвертый день войны, в среду, 25 июня, фашисты уже были в Молодечно. Из-за быстрого наступления немецких войск мобилизация в Красную Армию не была проведена, поэтому в деревнях остались мужчины призывного возраста. В эти тревожные дни в деревне Селевцы и ее окрестностях начали появляться солдаты Красной Армии, попавшие в окружение.</p>
+  </div>
+
+  <div class="card">
+    <h3>Иван Григорьевич Дубонос</h3>
+    <p>Иван Григорьевич приехал с семьей в Молодечненский район в 1940 году из Витебской области. Сначала они поселились в д. Красное, Иван Григорьевич стал работать в Радошковичском лесхозе. Через некоторое время Дубоносам дали лесничевку недалеко от Прончейково.</p>
+    <p>Именно здесь, в Прончейково, семья Дубонос встретила войну. Здесь была создана подпольная группа, отсюда уходили в лес партизаны.</p>
+    <p>Иван Григорьевич оказался среди тех, кто не потерял свою решимость, не поддался страху и не впал в панику. Понимая, что в одиночку воевать сложно, он искал единомышленников. Прончейково, Городок, Красное, Радошковичи — всюду он ходил со своей дочерью Верой. Отец с дочкой вызывали меньше подозрений и вопросов со стороны немцев. Вера очень любила отца и разделяла все его взгляды и убеждения.</p>
+    <p>В интервью газете «Приборостроитель» в 1983 году Вера Ивановна вспоминала, как отец хотел сблизиться с польской группой. Встреча состоялась на мельнице (теперь там Васьковское водохранилище). Первым вышел ксендз, который представлял польскую группу. Не сошлись в главном — Иван Дубонос собирал группу не только для борьбы с немцами, но и для сражения за свою Родину, за Советскую власть. «Если вы за коммунистов, — сказал ксендз, — тогда нам не по пути».</p>
+  </div>
+
+  <div class="card">
+    <p>В июле 1941 года судьба свела Ивана Григорьевича с Михаилом Ивановичем Грибановым. В августе 1939 года Грибанов М.И. закончил военно-политическое училище в городе Горький и перед началом войны служил на западной границе БССР, в районе Щучина. Когда началась война, полк, в котором служил Михаил Иванович, вел ожесточенные бои с превосходящими силами противника, но ему пришлось отступить. В районе Волковыска они попали в окружение и затем в плен. Пленных повели через Волковыск в Молодечно. По дороге Грибанов М.И. совершил побег около деревни Холхлово, провел три дня в лесу, а затем добрался до прончейковских хуторов, где остался на некоторое время.</p>
+    <p>У жителей близлежащих деревень прятались и другие военные — солдаты и офицеры, — которые не смогли выйти из окружения. Они понимали, что надо защищать Родину, и поэтому главными вопросами, которые стояли перед ними, были вооружение и выход в лес. 9 декабря 1941 года политрук Грибанов М.И. и Дубонос И.Г. создали в деревне Прончейково подпольную группу из воинов Красной Армии, которые попали в окружение, и местных жителей. 12 декабря 1941 года состоялось собрание группы (15 человек). Позже эта группа влилась в партизанский отряд имени И.П. Кузнецова. В марте 1942 года прончейковская группа под командованием Грибанова М.И. обосновалась в лесу, чтобы начать вооруженную борьбу. В лес ушло 25 человек.</p>
+  </div>
+
+  <div class="photo-grid equal-two">
+    <div class="photo-card" onclick="openDialog(this)">
+      <img class="photo-square" src="images/gribanov.jpg" alt="Михаил Иванович Грибанов" onerror="showNoPhoto(this)">
+      <div class="caption">Михаил Иванович Грибанов</div>
+    </div>
+    <div class="photo-card" onclick="openDialog(this)">
+      <img class="photo-square" src="images/dubonos.jpg" alt="Иван Григорьевич Дубонос" onerror="showNoPhoto(this)">
+      <div class="caption">Иван Григорьевич Дубонос</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== РАЗДЕЛ 3: СВЯЗНАЯ ОТРЯДА ===== -->
+<section class="section" id="section3">
+  <h2 class="section-title">Связная отряда</h2>
+  <p class="section-subtitle">Вера и подпольная группа Ивана Дубоноса</p>
+
+  <div class="card">
+    <h3>Вера — связная</h3>
+    <p>В начале войны красноармейцы, попавшие в окружение, и местные жители, стремившиеся к борьбе с фашистскими оккупантами, действовали разрозненно, между ними необходимо было наладить связь. На роль связной идеально подходила Вера. Она ходила с поручениями, сути которых не понимала — несла бумажные ленточки с цифрами, зашифрованные сообщения. Несколько раз она ходила в Молодечно на железную дорогу, передавала информацию незнакомому мужчине и несла от него сообщения обратно.</p>
+    <p>Но однажды, когда она шла с очередным сообщением, в деревне Хожево ее встретил другой незнакомец и тихо произнес: «Дзеўка, не хадзі, таго чалавека ўжо забралі». Возможно, он спас ей жизнь. Но выполнять задания она не прекратила, носила сообщения другим связным.</p>
+  </div>
+
+  <div class="card">
+    <h3>Арест и гибель Ивана Григорьевича</h3>
+    <p>В мае Ивана Григорьевича вместе с другими партизанами — Григорием Сорокиным, Иваном Акимовым («Ванюшей Чапаем»), Михаилом Куприяном — схватили фашисты. 15 мая 1942 года в деревне Шалыги Городокского сельсовета карателям удалось захватить одного партизана. Он не выдержал пыток, выдал отдельных связных и указал место расположения отряда. На отряд было брошено более 200 вооруженных карателей. Однако связные вовремя предупредили об опасности, и партизаны перебазировались в другое место: слишком неравны были силы, чтобы принять открытый бой.</p>
+    <p>Иван Акимов («Ванюша Чапай») попытался бежать около деревни Холхлово, но был убит. Григория Сорокина, Михаила Куприяна и Ивана Дубоноса фашисты схватили и после жестоких пыток бросили в Вилейскую тюрьму.</p>
+    
+    <div class="photo-grid equal-two">
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="photo-square" src="images/akimov.jpg" alt="Иван Акимов" onerror="showNoPhoto(this)">
+        <div class="caption">Иван Акимов («Ванюша Чапай»)</div>
+      </div>
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="photo-square" src="images/sorokin.jpg" alt="Григорий Сорокин" onerror="showNoPhoto(this)">
+        <div class="caption">Григорий Сорокин («Сибиряк»)</div>
+      </div>
+    </div>
+
+    <p>Вера Ивановна искала отца в Городке, в Красном, в Радошковичах. В Радошковичском полицейском участке ее сильно избили на допросе. Немцев интересовали связи отца, с кем встречался, когда, зачем, но Вера на их вопросы не ответила. После этого допроса Вера долго болела. А когда выздоровела — продолжила поиски и нашла отца в Вилейской тюрьме. Им разрешили встретиться только один раз, после этой встречи они с матерью носили в тюрьму смены белья. Но однажды белье не взяли и сказали, что Ивана Григорьевича увезли на работу в Германию. Лишь позже стало известно, что его и других партизан расстреляли у стен Вилейской тюрьмы. Извещение о его смерти Христина Яковлевна получила в октябре 1944 года. Такое же извещение получила и жена Михаила Куприяна.</p>
+
+    <div class="photo-grid equal-two">
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="photo-square" src="images/pohoronka_dubonos.jpg" alt="Похоронка И.Г. Дубоноса" onerror="showNoPhoto(this)">
+        <div class="caption">Похоронка И.Г. Дубоноса</div>
+      </div>
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="photo-square" src="images/pohoronka_kupriyan.jpg" alt="Похоронка М.К. Куприяна" onerror="showNoPhoto(this)">
+        <div class="caption">Похоронка М.К. Куприяна</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== РАЗДЕЛ 4: В РЯДАХ ПАРТИЗАН ===== -->
+<section class="section" id="section4">
+  <h2 class="section-title">В рядах партизан</h2>
+  <p class="section-subtitle">Декабрь 1942 — 1943. Бригада имени В.П. Чкалова</p>
+
+  <div class="card">
+    <h3>5 декабря 1942 года</h3>
+    <p>В декабре 1942 года, возвращаясь с очередного задания, Вера проходила мимо гарнизона в д. Городок. Стоявшие там полицаи стали отпускать в адрес молодой девушки шуточки, а один, вроде как заигрывая, тихо произнес: «Уходите, куда можете. За вами придут». Девушка рассказала это партизанам, которые пришли к ним за информацией, и той же ночью их с матерью забрали в отряд. Так 5 декабря 1942 года Христина Яковлевна и Вера стали партизанками бригады имени В.П. Чкалова.</p>
+    
+    <!-- Справка перенесена сюда -->
+    <div class="photo-grid single-photo">
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="photo-square" src="images/doc_spravka.jpg" alt="Справка о нахождении в бригаде им. Чкалова" onerror="showNoPhoto(this)">
+        <div class="caption">Справка о нахождении в бригаде им. Чкалова</div>
+      </div>
+    </div>
+
+    <!-- Текст про личные листки перенесен сюда -->
+    <p>В личном листке по учету кадров указано, что Христина Яковлевна сначала была в отряде им. Кузнецова, затем в отряде «За Советскую Белоруссию», а позже в отряде «26 лет Октября». Вера же попала в отряд «За Советскую Белоруссию», а затем в отряд «26 лет Октября».</p>
+
+    <div class="photo-grid equal-two">
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="photo-square" src="images/doc_list_hristina.jpg" alt="Личный листок по учету кадров Х.Я. Дубонос" onerror="showNoPhoto(this)">
+        <div class="caption">Личный листок по учету кадров Х.Я. Дубонос</div>
+      </div>
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="photo-square" src="images/doc_list_vera.jpg" alt="Личный листок по учету кадров В.И. Дубонос" onerror="showNoPhoto(this)">
+        <div class="caption">Личный листок по учету кадров В.И. Дубонос</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Вера — машинистка</h3>
+    <p>Вера стала машинисткой. Это была очень ответственная работа. В то время, когда немецкая пропаганда разносила весть о своих победах, было важно обеспечить население правдивой информацией о реальной обстановке на фронте, передавать сводки Совинформбюро и приказы командования. Партизанская печать предупреждала об опасности и способствовала срывам мероприятий, которые пытались проводить оккупационные власти. Очень много времени проводила Вера за печатной машинкой в землянке, при скудном освещении, но относилась к этому поручению добросовестно.</p>
+    
+    <div class="photo-grid doc-stack">
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="doc-img" src="images/doc_razvedka_1.jpg" alt="Разведсводка штаба бригады им. В.П. Чкалова, лист 1" onerror="showNoPhoto(this)">
+        <div class="caption"></div>
+      </div>
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="doc-img" src="images/doc_razvedka_2.jpg" alt="Разведсводка штаба бригады им. В.П. Чкалова, лист 2" onerror="showNoPhoto(this)">
+        <div class="caption"></div>
+      </div>
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="doc-img" src="images/doc_razvedka_3.jpg" alt="Разведсводка штаба бригады (апрель 1944 г.)" onerror="showNoPhoto(this)">
+        <div class="caption">Разведсводка штаба бригады (апрель 1944 г.)</div>
+      </div>
+    </div>
+    
+    <p style="font-size: 1rem; color: var(--olive); text-align: center; font-style: italic; margin-top: 0.2rem; margin-bottom: 1rem; text-indent: 0;">Именно такие документы печатала в землянке Вера Ивановна</p>
+  </div>
+
+  <div class="card">
+    <h3>Христина — помощник повара</h3>
+    <p>Христина Яковлевна была назначена помощником повара. Партизаны сами добывали себе пропитание, и это было нелегкой задачей, так как партизанская бригада со временем пополнялась новыми членами за счет местных жителей. Приходилось собирать в лесу ягоды и грибы, что помогало разнообразить рацион партизан и поддерживать их силы. Умение готовить и заботиться о своих товарищах было неоценимым в условиях партизанской борьбы. Необходимо было оказывать помощь раненым, лечить болезни, катастрофически не хватало медикаментов. Приходилось собирать и сушить чернику, ольховую и березовую кору, лекарственные травы. Когда в пущу стали прилетать самолеты с Большой земли, стало немного полегче.</p>
+  </div>
+
+  <div class="card">
+    <h3>Песни у костра</h3>
+    <p>Вера Ивановна вспоминала, как летними вечерами партизаны собирались у костра и пели песни. Представители Барановичского подпольного обкома партии привезли в партизанскую бригаду песни «Землянка» и «Синий платочек», которые стали для них отдушиной, возвращая на мгновение к мирной жизни и даря надежду на скорую победу. Эти мгновения, когда они могли хоть ненадолго забыть о тяготах войны и окунуться в атмосферу душевного тепла и единения, навсегда остались в памяти Веры Ивановны и Христины Яковлевны.</p>
+  </div>
+</section>
+
+<!-- ===== РАЗДЕЛ 5: РЕЛЬСОВАЯ ВОЙНА ===== -->
+<section class="section" id="section5">
+  <h2 class="section-title">Рельсовая война</h2>
+  <p class="section-subtitle">1943 год. Бригада имени В.П. Чкалова</p>
+
+  <div class="card">
+    <h3>Постановление и операции</h3>
+    <p>ЦК КП(б) Б в июне 1943 года принял постановление «О разрушении железнодорожных коммуникаций противника методом рельсовой войны», в котором предложен план уничтожения железных дорог одновременным массовым ударом с целью тем самым сделать невозможным быстрое восстановление противником железнодорожных путей. Рельсовая война должна была сопровождаться крушениями поездов, взрывами мостов и разрушениями станционных сооружений. Партизанские соединения, сражавшиеся на оккупированной территории, широко применяли элементы рельсовой войны, но наиболее значительное влияние на ход войны оказали действия народных мстителей в следующих операциях: «Рельсовая война» (с 3 августа по 15 сентября 1943 года), «Концерт» (с 19 сентября по конец октября 1943 года), партизанские действия в рамках операции «Багратион» (с 23 июня по 29 августа 1944 года).</p>
+  </div>
+
+  <div class="card">
+    <h3>Диверсии бригады</h3>
+    <p>В донесении командования партизанской бригады им. В. П. Чкалова Барановичской области секретарю Барановичского подпольного обкома КП(б)Б В. Е. Чернышеву о диверсионной деятельности бригады им. Чкалова за период с 1 по 29 июля 1943 г. от 18 августа 1943 г. отмечается, что партизаны бригады осуществляли различные диверсионные акции, направленные на разрушение железнодорожных путей, поездов, мостов и других объектов инфраструктуры, которые использовались немецко-фашистскими войсками для транспортировки военного оборудования, продовольствия и других ресурсов. В основном диверсии осуществлялись на перегонах Молодечно — Красное, Олехновичи — Красное, Юратишки — Богданово, Полочаны — Молодечно, Молодечно — Минск (возле поселка Ждановичи), между Ратомкой и Минском, на перегоне Заславль — Крыжовка.</p>
+    <p>Герой Советского Союза командир партизанского соединения полковник Роман Наумович Мачульский указывает в воспоминаниях, что партизаны бригады им. В.П. Чкалова Барановичской области за 15 дней пустили под откос 21 вражеский эшелон, уничтожили более 1300 гитлеровцев, перебили 272 рельса, взорвали и сожгли 8 автомашин и 10 мостов.</p>
+  </div>
+
+  <div class="card">
+    <h3>Карта боевых действий</h3>
+    <div class="map-wrapper">
+      <iframe src="https://www.google.com/maps/d/embed?mid=1_Oi3UFihTqbJ0FP4nnl7LSSKdWTl7btZ&ehbc=2E312F" width="100%" height="480" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <p style="text-align: center; font-size: 0.9rem; color: var(--olive); margin-top: 0.8rem; font-style: italic; text-indent: 0;">
+      <strong>Карта боевых действий бригады им. В.П. Чкалова (1 июля — 5 августа 1943).</strong><br>
+      Интерактивная карта составлена на основе архивных документов: донесений и приказов командования партизанской бригады (сборник «Всенародное партизанское движение в Белоруссии в годы Великой Отечественной войны», Т. 2, Кн. 2, док. № 50, 52).
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Тол из бомб</h3>
+    <p>Для рельсовой войны требовался тол, который был дефицитом в окружении партизан. Ада Антоновна рассказала, как мама вспоминала один из способов, которым ее соратники добывали необходимые для диверсий материалы. Партизаны находили авиационные бомбы, снаряды и мины, оставшиеся от боевых действий или сброшенные немецкой авиацией. Эти боеприпасы представляли собой опасный груз, но для партизан служили источником ценных компонентов. На кострах, разведенных прямо на месте, партизаны выплавляли тол в заранее приготовленные формы, в которых он застывал в виде «буханок», как их называли в отряде партизаны. Этот процесс был крайне опасен, так как возможность нештатных ситуаций создавала угрозу для жизни тех, кто занимался выплавкой. Однако, несмотря на риск, эта работа была жизненно важна для успешного проведения диверсий и подрыва вражеских коммуникаций.</p>
+  </div>
+
+  <div class="card">
+    <h3>Он не слышал — но шел</h3>
+    <p>Командир диверсионной группы Сергей Баташов, москвич, участвовал в многочисленных операциях по подрыву железнодорожных путей. Однажды во время очередной операции произошел непредвиденный взрыв, который оглушил Сергея и лишил его слуха. Несмотря на это, он сохранял ясность мышления и, помня о договоренности с товарищами о возвращении с задания поодиночке, решил самостоятельно добраться до Налибокской пущи, где дислоцировалась партизанская бригада.</p>
+    <p>Потерявший слух Сергей понимал, что в таком состоянии ему будет крайне сложно ориентироваться в лесу, полном опасностей. Достигнув ближайшего хутора, партизан уговорил хозяйку отдать ему гуся, который обладал острым слухом и мог реагировать на звуки окружающего мира. С гусем на руках Сергей отправился в путь. Птица, услышав шум, поворачивала голову в нужном направлении, тем самым подавая знак оглушенному партизану. Невероятный союз человека и птицы оказался успешным — боец благополучно добрался до места дислокации бригады, преодолев опасный путь.</p>
+    
+    <div class="video-wrapper">
+      <video controls preload="metadata" autoplay muted playsinline>
+        <source src="images/batashov_gus.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+      </video>
+    </div>
+    <p class="video-caption">Художественная реконструкция. Сгенерировано с помощью ИИ</p>
+    
+    <p>Этот рассказ показывает, как в условиях войны люди находили новые способы преодоления трудностей и опасностей, обретая небывалые силы и находчивость.</p>
+  </div>
+</section>
+
+<!-- ===== РАЗДЕЛ 6: ОПЕРАЦИЯ «ГЕРМАН» ===== -->
+<section class="section" id="section6">
+  <h2 class="section-title">Операция «Герман»</h2>
+  <p class="section-subtitle">13 июля — 11 августа 1943. Налибокская пуща</p>
+
+  <div class="card">
+    <h3>Блокада пущи</h3>
+    <p>Первый этап рельсовой войны начался в то время, когда в Налибокской пуще еще не успела завершиться одна из самых жестоких операций военного времени — операция «Герман», которая длилась с 13 июля по 11 августа 1943 года. Это было очень тяжелое для бригады имени В.П. Чкалова и других партизанских формирований время.</p>
+    <p>В разгар битвы на Курской дуге руководитель СС и полиции в Белоруссии Курт фон Готтберг приказал очистить от партизан Налибокскую и Липичанскую пущи. «Партизанские отряды должны быть уничтожены, — подчеркивал обергруппенфюрер СС, — их лагеря разрушены, а продовольственные запасы конфискованы».</p>
+    <p>13 июля оперативные группы СС и полиции приступили к окружению партизанской зоны. Особой жестокостью отличался в этой операции батальон СС Оскара Пауля Дирлевангера. Боевая группа Дирлевангера сочетала боевые действия с карательными акциями. Начиная с 18 июля, штрафной батальон «зачищал» населенные пункты. Из деревень Путники, Володьки, Олехновичи 1-я рота батальона угнала все население в возрасте от 15 до 50 лет. Буквально за три-четыре дня было сожжено 11 населенных пунктов Воложинского района, а всего за время операции немцы и коллаборационисты сожгли 150 населенных пунктов. Жуткая расправа произошла в деревне Доры, находящейся в 8 километрах от Прончейково. В ней эсэсовцы сожгли 106 человек.</p>
+    <p>Партизанские отряды встретили противника на подступах к зоне ударами маневренных групп, чем задержали продвижение эсэсовцев на два дня. Отдельные партизанские отряды сразу же попытались прорваться через боевые порядки противника. Положение партизан было сложным, так как вражеская армия превосходила их по численности и по оснащению. Партизаны из бригады имени В.П. Чкалова проявили героизм, мужество и отвагу. Они держали оборону в районе деревень Углы, Дубки и Сивица Ивенецкого района — там, где наступал батальон Дирлевангера. Эсэсовцы, поддерживаемые авиацией, неоднократно переходили в атаки, однако партизаны оборонялись стойко, несколько дней вели бои с превосходящими силами противника.</p>
+  </div>
+
+  <div class="card">
+    <h3>В болоте</h3>
+    <p>Даже по прошествии многих лет Вера Ивановна с ужасом вспоминала это время. Вместе с Христиной Яковлевной она пряталась в непроходимых болотах. У Веры был наган, и между ней и матерью была договоренность: если враги подойдут слишком близко, она сначала застрелит мать, а затем себя, чтобы не попасть в руки фашистам и не подвергнуться их жестоким пыткам.</p>
+    <p>В это время произошла одна история, которая навсегда осталась для них загадкой. Фашисты находились совсем близко, поэтому женщины сидели очень тихо, практически без движения, не переговариваясь между собой. Вдруг раздвинулись кусты и прямо на них стала смотреть немецкая овчарка. Вера и Христина Яковлевна мысленно попрощались с жизнью, готовясь к худшему. Но неожиданностью стало то, что собака, не проявляя никакой агрессии или интереса к их убежищу, просто отвернулась и ушла, исчезнув в кустах. Именно так, благодаря непредсказуемости судьбы, им удалось избежать смерти в тот день.</p>
+    
+    <div class="video-wrapper">
+      <video controls preload="metadata" autoplay muted playsinline>
+        <source src="images/swamp_video.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+      </video>
+    </div>
+    <p class="video-caption">Художественная реконструкция. Сгенерировано с помощью ИИ</p>
+
+    <p>Партизаны умело использовали тактику, основанную на распорядке дня оккупантов. Фашисты следили за тем, чтобы все было организовано по часам, и каждый знал, когда начинается и заканчивается определенное действие — обед или перерыв. В этот короткий промежуток времени, когда вражеские солдаты отдыхали и отвлекались от своих обязанностей, партизаны находили возможность маневрировать и действовать незаметно для противника, что было очень важным для выживания и успеха их партизанской деятельности.</p>
+  </div>
+
+  <div class="card">
+    <h3>Боевые характеристики</h3>
+    <p>В боевой характеристике Христины Яковлевны отмечается: «Участвовала в открытых боях с немцами, где убито 5 и взято в плен 2 немца». У Веры Ивановны также есть запись об участии в открытом бою.</p>
+    <p>Командование бригады регулярно писало отчеты о действиях партизанских отрядов во время боевых операций. В приказе командования о боевых действиях отрядов бригады за период с 20 июля по 5 августа 1943 г. от 19 августа 1943 года есть запись: «Роты отряда „За Советскую Белоруссию“ обстреливали немцев на переправе через р. Ислочь и делали вылазки с обстрелом в этих населенных пунктах, где было убито 5 гитлеровцев». Можно предположить, что именно в этом бою участвовали Вера Ивановна и Христина Яковлевна.</p>
+    <p>Проведенная операция по блокировке и прочесыванию пущи немецкой карательной экспедицией показала, что, несмотря на превосходящие как в технике, так и в количестве личного состава силы противника, наши отряды сумели выйти из окружения и сохранили живую силу. В этой борьбе наши партизаны и партизанки показали исключительную выносливость. Таким образом, блокада Налибокской пущи фашистами не принесла им ожидаемых результатов, а стала лишь одной из многих битв в долгой и тяжелой войне. После окончания операции «Герман» партизаны бригады имени Чкалова продолжили свою борьбу до освобождения родной земли от фашистской оккупации.</p>
+  </div>
+
+  <div class="photo-grid equal-two">
+    <div class="photo-card" onclick="openDialog(this)">
+     <img class="photo-square" src="images/doc_char_hristina.jpg" alt="Боевая характеристика Х.Я. Дубонос" onerror="showNoPhoto(this)">
+      <div class="caption">Боевая характеристика Х.Я. Дубонос</div>
+    </div>
+    <div class="photo-card" onclick="openDialog(this)">
+      <img class="photo-square" src="images/doc_char_vera.jpg" alt="Боевая характеристика В.И. Дубонос" onerror="showNoPhoto(this)">
+      <div class="caption">Боевая характеристика В.И. Дубонос</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== РАЗДЕЛ 7: МИРНАЯ ЖИЗНЬ ===== -->
+<section class="section" id="section7">
+  <h2 class="section-title">Возвращение к мирной жизни</h2>
+  <p class="section-subtitle">1944–1971</p>
+
+  <div class="card">
+    <h3>Освобождение</h3>
+    <p>Уже в конце 1943 года началось освобождение Беларуси. 3 июля 1944 года танкисты и пехотинцы 1-го и 2-го Белорусских фронтов освободили от немецко-фашистских захватчиков столицу Беларуси — Минск. 5 июля в ходе Вильнюсской операции войсками 3-го Белорусского фронта при поддержке местных партизанских бригад и отрядов был освобожден город Молодечно. Партизанская бригада им. В.П. Чкалова соединилась с частями Красной Армии в составе 5 отрядов общей численностью 1085 партизан. Из них: мужчин — 953, женщин — 132; белорусов — 638, русских — 292, украинцев — 48, других национальностей — 107; членов ВКП(б) — 55, кандидатов — 70, членов ВЛКСМ — 236, беспартийных — 724.</p>
+    <p>Пути партизан бригады имени В.П. Чкалова после 5 июля разошлись. Основная часть продолжила борьбу в составе 3-го Белорусского фронта. Кто-то остался восстанавливать тыл. Вера Ивановна вместе с Христиной Яковлевной начали мирную жизнь.</p>
+  </div>
+
+  <div class="card">
+    <h3>Парад 16 июля 1944 года</h3>
+    <p>В воскресенье, 16 июля 1944 года, в Минске, на поле бывшего ипподрома в конце Красноармейской улицы, состоялся уникальный парад, практически не имевший аналогов в мировой истории. В торжественном строю шагали народные мстители — около 30 тысяч человек. В этом параде приняла участие и бригада имени В.П. Чкалова во главе с командиром Грибановым М.И.</p>
+    <p>«Мама не участвовала в этом параде из-за болезни», — вспоминает Ада Антоновна. Вера Ивановна пережила немало испытаний в годы войны. После жестокого допроса в Радошковичском полицейском участке, где ее пытали, она долго болела. Уже в партизанском отряде, во время боевых действий, ее отбросило взрывной волной, и она ударилась головой о дерево. Командование бригады даже приняло решение отправить ее на лечение на Большую землю, однако Христина Яковлевна не могла смириться с мыслью о разлуке с дочерью и отказалась отпустить ее.</p>
+  </div>
+
+  <div class="card">
+    <h3>После войны</h3>
+    <p>После освобождения Беларуси Христина Яковлевна с дочерью вернулись в Прончейково. Вскоре Вера вышла замуж и родила дочь Аду. В тяжелое послевоенное время многие искали работу по всему Советскому Союзу. Попытался уехать в Москву и муж Веры Ивановны, однако судьба рассудила иначе — на станции Олехновичи он опоздал на поезд до Москвы. Там же, на станции вербовщик уговорил его уехать в Эстонию. Так семья Дубонос-Кобан оказалась в городе Кохтла-Ярве, где прожила до 1971 года. Христина Яковлевна очень хотела вернуться в родные места, и они всей семьей переехали в Молодечно, где и по сей день живет Ада Антоновна.</p>
+  </div>
+
+  <div class="photo-grid single-photo">
+    <div class="photo-card" onclick="openDialog(this)">
+      <img class="photo-auto" src="images/family.jpg" alt="Вера Ивановна с матерью и мужем" onerror="showNoPhoto(this)">
+      <div class="caption">Вера Ивановна с матерью и мужем</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== РАЗДЕЛ 8: ПАМЯТЬ ===== -->
+<section class="section" id="section8">
+  <h2 class="section-title">Коллективная память</h2>
+  <p class="section-subtitle">Роль истории семьи Дубонос в сохранении памяти о войне</p>
+
+  <div class="card">
+    <p>История семьи Дубонос является важным элементом сохранения коллективной памяти о Великой Отечественной войне. В отличие от многих ветеранов, которые предпочитали не рассказывать об участии в военных действиях, мама и бабушка Ады Антоновны делились с ней своими воспоминаниями и историями, а она, в свою очередь, поделилась этой информацией с нами. Кроме того, Ада Антоновна хранит документы, письма, фотографии, связанные с историей своей семьи.</p>
+    
+    <div class="photo-grid single-photo">
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="photo-auto" src="images/vera.jpg" alt="Вера Ивановна Дубонос" onerror="showNoPhoto(this)">
+        <div class="caption">Вера Ивановна Дубонос</div>
+      </div>
+    </div>
+
+    <p>Вера Ивановна в свое время принимала участие во встречах со школьниками, где делилась своими воспоминаниями о военных событиях. В День Победы члены семьи Дубонос традиционно посещали памятник партизанам в д. Прончейково, поставленный в 1978 году в честь подпольщиков, которые создали партизанский отряд имени Кузнецова, и партизан этого отряда. На гранитных валунах прикреплены две мемориальные доски из силумина, на которых указано, что одними из первых участников прончейковской партизанской группы были Дубонос Иван Григорьевич, Куприян Михаил Карпович, Сорокин Григорий Петрович, Акимов Иван Федорович, которые геройски погибли в 1942 году в борьбе с гитлеровскими оккупантами.</p>
+    
+    <div class="photo-grid equal-two">
+      <div class="photo-card" onclick="openDialog(this)">
+       <img class="photo-monument" src="images/monument_1.jpg" alt="Памятник партизанам в д. Прончейково" onerror="showNoPhoto(this)">
+        <div class="caption">Памятник партизанам в д. Прончейково</div>
+      </div>
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="photo-square" src="images/monument_2.jpg" alt="Мемориальная доска" onerror="showNoPhoto(this)">
+        <div class="caption">Мемориальная доска на памятнике</div>
+      </div>
+    </div>
+
+    <p>Памятник партизанам в Прончейково стоит на земле, которая была свидетельницей тех событий. Здесь жили Иван Григорьевич, Христина Яковлевна и Вера. Здесь сегодня живем мы, учимся в школе, ходим по тем же дорогам. Память о них — это не только страницы учебников, это наша улица, наша школа, наша земля.</p>
+    <p>У Ады Антоновны сохранились медали ее матери, что является дополнительным напоминанием о прошлом и свидетельством коллективной памяти. Благодаря устным рассказам, семейным архивам, участию в мероприятиях и праздниках, сохранению артефактов и передаче традиций и историй, семья Дубонос способствует сохранению и распространению коллективной памяти о войне в обществе.</p>
+    
+    <div class="photo-grid" style="max-width: 900px; margin: 1rem auto; grid-template-columns: 1fr 1fr;">
+      <div class="photo-card" onclick="openDialog(this)">
+  <img class="photo-contain" src="images/medal_1.jpg" alt="Медаль «Партизану Отечественной войны»" onerror="showNoPhoto(this)">
+  <div class="caption">Медаль «Партизану Отечественной войны»</div>
+</div>
+<div class="photo-card" onclick="openDialog(this)">
+  <img class="photo-contain" src="images/medal_2.jpg" alt="Медаль «За победу над Германией в Великой Отечественной войне 1941—1945 гг.»" onerror="showNoPhoto(this)">
+  <div class="caption">Медаль «За победу над Германией в Великой Отечественной войне 1941—1945 гг.»</div>
+</div>
+      
+      <div class="photo-card" onclick="openDialog(this)">
+  <img class="photo-contain" src="images/udostoverenie_1.jpg" alt="Удостоверение к медали «За победу над Германией в Великой Отечественной войне 1941—1945 гг.»" onerror="showNoPhoto(this)">
+  <div class="caption">Удостоверение к медали «За победу над Германией в Великой Отечественной войне 1941—1945 гг.»</div>
+</div>
+<div class="photo-card" onclick="openDialog(this)">
+  <img class="photo-contain" src="images/udostoverenie_2.jpg" alt="Удостоверение к медали «Партизану Отечественной войны»" onerror="showNoPhoto(this)">
+  <div class="caption">Удостоверение к медали «Партизану Отечественной войны»</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== БЛОК: ЖЕНСКОЕ ЛИЦО ПОБЕДЫ ===== -->
+<section class="section" id="zhenskoe-lico" style="background: #ede4d3;">
+  <h2 class="section-title" style="border-left-color: var(--mint);">Женское лицо Победы</h2>
+  
+  <div class="card" style="background: var(--almond); border-top-color: var(--mint); box-shadow: 0 3px 15px var(--shadow);">
+    <p>Когда говорят о «Женском лице Победы», часто представляют санитарок или снайперов. Но за этими словами стоят не только те, кто воевал на фронте.</p>
+    <p>За этими словами стоят и те женщины, которые заботились о своих товарищах в партизанском отряде, рисковали жизнью, будучи связными, печатали сводки в сырой землянке. Женщины, которые в болотах Налибокской пущи были готовы умереть, но не попасть в руки врагу.</p>
+    <p>Именно такими были Христина Яковлевна и ее дочь Вера. Их подвиг — это не громкие слова, а тихое, каждодневное мужество. Это способность сберечь человеческое достоинство в нечеловеческих условиях.</p>
+  </div>
+</section>
+
+<!-- ===== ФИНАЛ: ЦИТАТА АДЫ АНТОНОВНЫ ===== -->
+<section class="full-width-section" id="final" style="background: var(--dark-green); color: var(--almond);">
+  <div>
+    <h2 style="color: var(--mint); font-size: clamp(1.4rem, 3vw, 2.2rem); border-left: 6px solid var(--mint); padding-left: 1rem; margin-bottom: 1.5rem;">Их завтрашний день — это наше сегодня</h2>
+    
+    <div class="photo-grid single-photo-left">
+      <div class="photo-card" onclick="openDialog(this)">
+        <img class="photo-auto" src="images/ada.jpg" alt="Ада Антоновна Кобан" onerror="showNoPhoto(this)">
+        <div class="caption" style="background: transparent; color: var(--mint); border-top: none;">Ада Антоновна Кобан</div>
+      </div>
+    </div>
+
+    <p style="margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8; text-indent: 0;">Ради того, чтобы завтра взошло солнце, они жертвовали собой. Спустя годы об этом говорит Ада Антоновна. Ее слова учат нас ценить мир и помнить, какой ценой он достался.</p>
+
+    <div class="quote" style="background: rgba(168, 213, 186, 0.1); border-left: 5px solid var(--mint); color: var(--almond); font-size: 1.2rem; margin-bottom: 1.5rem;">
+      <p>«Разговаривая с мамой и ее ровесниками, я понимала, насколько им важно, чтобы невоевавшие поколения не забывали о том, что прошлое оставило нам уроки, полные боли и страданий. Они должны понимать, что война – это не только героические подвиги и славные победы, это страх, горе, страдания, потери и разрушения. Мы должны говорить с ними о том, что значит быть человеком, который заботится о мире и сострадании, должны учить их ценить жизнь и всегда искать пути к примирению и взаимопониманию. Люди, прошедшие войну, верили, что, держа в уме уроки прошлого, их потомки создадут будущее, в котором следующие поколения смогут жить в мире и гармонии, не зная страха и боли войны».</p>
+      <span class="quote-author" style="color: var(--mint);">— Ада Антоновна Кобан</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== БЛОК АВТОРСТВА ===== -->
+<div class="authorship">
+  <p><strong>Автор ресурса:</strong> Сак Родион, учащийся 8 класса ГУО «Селевская базовая школа Молодечненского района»</p>
+  <p><strong>Руководитель:</strong> Кучко Наталья Михайловна, учитель математики и информатики</p>
+  <p><strong>По материалам исследовательской работы</strong> «История одной семьи и ее роль в сохранении коллективной памяти о войне» (автор — Иван Дубровинский, выпускник ГУО «Селевская базовая школа Молодечненского района», руководитель — Кучко Н.М.)</p>
+</div>
+
+<!-- ===== ПОДВАЛ ===== -->
+<footer>
+  <p>«Ради того, чтобы завтра взошло солнце…» — интерактивный ресурс о судьбах Христины Яковлевны и Веры Ивановны Дубонос, партизанок бригады имени В.П. Чкалова.</p>
+</footer>
+
+<!-- ===== КНОПКА ВВЕРХ ===== -->
+<button class="scroll-top" id="scrollTop" aria-label="Вверх">↑</button>
+
+<!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
+<dialog id="photoDialog">
+  <div class="dialog-content">
+    <button class="dialog-close" onclick="closeDialog()">✕</button>
+    <div class="dialog-img-wrapper">
+      <img id="dialogImg" src="" alt="">
+    </div>
+    <div class="dialog-caption" id="dialogCaption"></div>
+  </div>
+</dialog>
+
+<script>
+// Обработка отсутствующих фотографий
+function showNoPhoto(img) {
+  const parent = img.parentElement;
+  img.style.display = 'none';
+  const placeholder = document.createElement('div');
+  placeholder.className = 'no-photo';
+  placeholder.textContent = 'Фото готовится к публикации';
+  parent.insertBefore(placeholder, parent.firstChild);
+}
+
+// Открытие модального окна
+const dialog = document.getElementById('photoDialog');
+const dialogImg = document.getElementById('dialogImg');
+const dialogCaption = document.getElementById('dialogCaption');
+
+function openDialog(card) {
+  const img = card.querySelector('img');
+  const caption = card.querySelector('.caption');
+  
+  if (img && img.style.display !== 'none' && !img.classList.contains('no-photo')) {
+    dialogImg.src = img.src;
+    dialogImg.alt = img.alt;
+    dialogCaption.textContent = caption ? caption.textContent : '';
+    dialog.showModal();
+  }
+}
+
+function closeDialog() {
+  dialog.close();
+}
+
+// Закрытие по клику на фон
+dialog.addEventListener('click', (e) => {
+  const rect = dialog.getBoundingClientRect();
+  const isInDialog = (e.clientX >= rect.left && e.clientX <= rect.right && 
+                       e.clientY >= rect.top && e.clientY <= rect.bottom);
+  if (!isInDialog) {
+    dialog.close();
+  }
+});
+
+// Кнопка Вверх
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 500) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Подсветка активной ссылки в меню
+const sections = document.querySelectorAll('section[id], header[id]');
+const navLinks = document.querySelectorAll('.timeline-nav a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    if (scrollY >= sectionTop - 100) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
